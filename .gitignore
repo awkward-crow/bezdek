@@ -1,0 +1,14 @@
+# R CMD check
+*.Rcheck/
+
+# compiled C artefacts
+src/*.o
+src/*.so
+src/*.dll
+
+# build output
+*.tar.gz
+
+# R session
+.Rhistory
+.RData
