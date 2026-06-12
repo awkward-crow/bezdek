@@ -12,3 +12,5 @@ src/*.dll
 # R session
 .Rhistory
 .RData
+
+local/
