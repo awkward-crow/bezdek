@@ -1,7 +1,7 @@
 # bezdek
 
-Fuzzy c-means clustering (Bezdek 1981) for R, with an optional *cluster at
-infinity* for outlier handling. 
+Fuzzy c-means clustering (Bezdek 1981) with an optional *cluster at
+infinity*.
 
 ## Usage
 
