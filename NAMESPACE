@@ -1,0 +1,6 @@
+useDynLib(bezdek, .registration = TRUE)
+export(fcm)
+S3method(print,   fcm)
+S3method(summary, fcm)
+S3method(plot,    fcm)
+S3method(update,  fcm)

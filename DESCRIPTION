@@ -1,0 +1,16 @@
+Package: bezdek
+Type: Package
+Title: Fuzzy C-Means Clustering with Optional Cluster at Infinity
+Version: 0.1.0
+Authors@R: person("Michael Campbell", role = c("aut", "cre"),
+    email = "m.campbell@tutanota.com")
+Description: Fuzzy c-means clustering (Bezdek 1981) with support for an
+    optional cluster at infinity for outlier handling. The core algorithm
+    is implemented in C via .Call().
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends: R (>= 4.1.0)
+NeedsCompilation: yes
+Suggests:
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
