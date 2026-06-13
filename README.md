@@ -1,7 +1,9 @@
 # bezdek
 
-Fuzzy c-means clustering (Bezdek 1981) with an optional *cluster at
-infinity*.
+[![R-CMD-check](https://github.com/awkward-crow/bezdek/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/awkward-crow/bezdek/actions/workflows/R-CMD-check.yaml)
+
+Fuzzy c-means clustering (Bezdek 1981) with a *cluster at
+infinity* to identify outliers.
 
 ## Usage
 
@@ -33,7 +35,7 @@ r$U         # n × k membership matrix (rows sum to 1)
 r$obj       # objective value at each iteration
 ```
 
-### Cluster at infinity (outlier handling)
+### Cluster at infinity
 
 Supply `rho` to add a *k*+1-th cluster whose centre can be thought of as lying at
 infinity. Its distance to point $x_i$ is defined as
