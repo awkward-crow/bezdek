@@ -4,7 +4,7 @@
 \alias{update.fcm}
 \title{Fuzzy C-Means Clustering}
 \description{
-  Fuzzy c-means clustering of a numeric data matrix into \code{c} clusters,
+  Fuzzy c-means clustering of a numeric data matrix into \code{k} clusters,
   with an optional cluster at infinity for outlier handling.
 }
 \usage{

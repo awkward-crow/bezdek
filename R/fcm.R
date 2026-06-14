@@ -1,17 +1,11 @@
-new_fcm <- function(centers, U, obj, call) {
-    structure(list(centers = centers, U = U, obj = obj, call = call),
-              class = "fcm")
-}
-
-print.fcm <- function(x, ...) {
-    nc      <- nrow(x$centers)
-    nd      <- ncol(x$centers)
-    has_inf <- ncol(x$U) == nc + 1L
-    cat(sprintf("fcm: %d cluster%s, %d feature%s, %d iteration%s%s\n",
-                nc, if (nc == 1L) "" else "s",
-                nd, if (nd == 1L) "" else "s",
-                length(x$obj), if (length(x$obj) == 1L) "" else "s",
-                if (has_inf) " (with cluster at infinity)" else ""))
+print.fcm <- function(x, digits = max(3L, getOption("digits") - 3L), ...) {
+    cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"),
+        "\n\n", sep = "")
+    centers <- x$centers
+    rownames(centers) <- paste0("Cluster ", seq_len(nrow(centers)))
+    cat("Cluster centers:\n")
+    print.default(format(centers, digits = digits), print.gap = 2L, quote = FALSE)
+    cat(sprintf("\nObjective: %s\n", format(tail(x$obj, 1L), digits = digits)))
     invisible(x)
 }
 
@@ -30,7 +24,7 @@ update.fcm <- function(object, ...) {
     eval(call, parent.frame())
 }
 
-new_rho_violation <- function(rho, point, nearest_dist) {
+rho_violation <- function(rho, point, nearest_dist) {
     structure(
         class = c("rho_violation", "error", "condition"),
         list(
@@ -91,9 +85,10 @@ fcm <- function(X, k, rho = NULL, m = 2.0, tol = 1e-6, maxiter = 300L,
         raw <- .Call(fcm_infinity_c, X, k, as.double(m),
                      as.double(tol), maxiter, as.double(rho))
         if (identical(raw[["type"]], "rho_violation"))
-            stop(new_rho_violation(raw[["rho"]], raw[["point"]],
+            stop(rho_violation(raw[["rho"]], raw[["point"]],
                                    raw[["nearest_dist"]]))
     }
 
-    new_fcm(raw[["centers"]], raw[["U"]], raw[["obj"]], cl)
+    structure(list(centers = raw[["centers"]], U = raw[["U"]], obj = raw[["obj"]], call = cl),
+              class = "fcm")
 }
